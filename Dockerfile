@@ -24,4 +24,3 @@ RUN cd /var/lib && \
   curl http://mirror.ox.ac.uk/sites/rsync.apache.org//jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz -o /var/lib/jmeter-$JMETER_VERSION.tgz && \
   tar xf jmeter-$JMETER_VERSION.tgz && \
   rm -f jmeter-$JMETER_VERSION.tgz
-
