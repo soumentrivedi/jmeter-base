@@ -6,19 +6,22 @@
 # It forms the basis for other images.
 #
 
-FROM fedora
-MAINTAINER Sri Sankaran sri@redhat.com
+FROM ubuntu:14.04 
+MAINTAINER Santosh Marigowda santosharakere@gmail.com 
 
 # Describe the environment
 ENV JDK_VERSION 1.7.0
-ENV JMETER_VERSION 2.11
+ENV JMETER_VERSION 2.12
+
+RUN apt-get update -y
+RUN apt-get install curl -y
 
 # Install the JDK
-RUN yum install -y java-$JDK_VERSION-openjdk-devel.x86_64 && rm -rf /var/cache/yum
+RUN  apt-get install openjdk-7-jdk -y
 
 # Install JMeter
 RUN cd /var/lib && \
-  curl http://psg.mtu.edu/pub/apache/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz -o /var/lib/jmeter-$JMETER_VERSION.tgz && \
+  curl http://mirror.ox.ac.uk/sites/rsync.apache.org//jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz -o /var/lib/jmeter-$JMETER_VERSION.tgz && \
   tar xf jmeter-$JMETER_VERSION.tgz && \
   rm -f jmeter-$JMETER_VERSION.tgz
 
