@@ -11,7 +11,7 @@ MAINTAINER Santosh Marigowda santosharakere@gmail.com
 
 # Describe the environment
 ENV JDK_VERSION 1.7.0
-ENV JMETER_VERSION 2.12
+ENV JMETER_VERSION 2.13
 
 RUN apt-get update -y
 RUN apt-get install curl -y
