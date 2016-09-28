@@ -2,25 +2,26 @@
 # Dockerfile for a base jmeter image
 # 
 # Usage:
-# It is unlikely that you will need to run this image.
-# It forms the basis for other images.
+# It forms the basis for other images
+
 #
 
 FROM ubuntu:14.04 
-MAINTAINER Santosh Marigowda santosharakere@gmail.com 
+MAINTAINER Souman Trivedi soumen.trivedi@gmail.com 
 
 # Describe the environment
 ENV JDK_VERSION 1.7.0
-ENV JMETER_VERSION 2.13
-
-RUN apt-get update -y
-RUN apt-get install curl -y
+ENV JMETER_VERSION 3.0
 
 # Install the JDK
-RUN  apt-get install openjdk-7-jdk -y
-
-# Install JMeter
-RUN cd /var/lib && \
-  curl http://mirror.ox.ac.uk/sites/rsync.apache.org//jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz -o /var/lib/jmeter-$JMETER_VERSION.tgz && \
+RUN apt-get update -y && apt-get install curl openjdk-7-jdk -y && cd /var/lib && \
+  curl http://mirror.ox.ac.uk/sites/rsync.apache.org/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz -o /var/lib/jmeter-$JMETER_VERSION.tgz && \
   tar xf jmeter-$JMETER_VERSION.tgz && \
-  rm -f jmeter-$JMETER_VERSION.tgz
+  rm -f jmeter-$JMETER_VERSION.tgz && \
+  ln -s /var/lib/apache-jmeter-2.13 /var/lib/apache-jmeter && \
+  curl http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar -o /var/lib/apache-jmeter/lib/ && \
+  curl https://jmeter-plugins.org/get/ -o /var/lib/apache-jmeter/lib/ext/jmeter-plugins-manager && \
+  java -cp /var/lib/apache-jmeter/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller && \
+  sh /var/lib/apache-jmeter/bin/PluginsManagerCMD.sh status
+
+ENTRYPOINT /bin/sh
