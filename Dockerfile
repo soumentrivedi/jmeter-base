@@ -19,7 +19,7 @@ RUN apt-get update -y && apt-get install curl openjdk-7-jdk -y && cd /var/lib &&
   tar xf jmeter-$JMETER_VERSION.tgz && \
   rm -f jmeter-$JMETER_VERSION.tgz && \
   ln -s /var/lib/apache-jmeter-2.13 /var/lib/apache-jmeter && \
-  curl http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar -o /var/lib/apache-jmeter/lib/ && \
+  curl http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar -o /var/lib/apache-jmeter/lib/cmdrunner-2.0.jar && \
   curl https://jmeter-plugins.org/get/ -o /var/lib/apache-jmeter/lib/ext/jmeter-plugins-manager && \
   java -cp /var/lib/apache-jmeter/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller && \
   sh /var/lib/apache-jmeter/bin/PluginsManagerCMD.sh status
