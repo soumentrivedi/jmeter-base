@@ -22,6 +22,7 @@ RUN apt-get update -y && apt-get install curl openjdk-7-jdk -y && cd /var/lib &&
   curl https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar --output /var/lib/apache-jmeter/lib/cmdrunner-2.0.jar && \
   curl https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/0.10/jmeter-plugins-manager-0.10.jar --output /var/lib/apache-jmeter/lib/ext/jmeter-plugins-manager.jar && \
   java -cp /var/lib/apache-jmeter/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller && \
-  sh /var/lib/apache-jmeter/bin/PluginsManagerCMD.sh status
+  sh /var/lib/apache-jmeter/bin/PluginsManagerCMD.sh status && \
+  sh /var/lib/apache-jmeter/bin/PluginsManagerCMD.sh install jpgc-casutg
 
 ENTRYPOINT /bin/sh
